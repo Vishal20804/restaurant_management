@@ -1,0 +1,14 @@
+*.pyc
+__pycache__/
+*.log
+*.pot
+*.mo
+*.swp
+.DS_Store
+.idea/
+.vscode/
+*.egg-info/
+venv/
+.env
+*.zip
+*.sqlite3
