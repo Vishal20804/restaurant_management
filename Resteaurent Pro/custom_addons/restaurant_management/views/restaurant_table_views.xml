@@ -1,0 +1,60 @@
+<odoo>
+    <!-- Table Tree/List View -->
+    <record id="view_restaurant_table_tree" model="ir.ui.view">
+        <field name="name">rsm.table.tree</field>
+        <field name="model">rsm.table</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="capacity"/>
+                <field name="status"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Table Form View -->
+    <record id="view_restaurant_table_form" model="ir.ui.view">
+        <field name="name">rsm.table.form</field>
+        <field name="model">rsm.table</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="capacity"/>
+                        <field name="status"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Table Kanban View (status color-coded) -->
+    <record id="view_restaurant_table_kanban" model="ir.ui.view">
+        <field name="name">rsm.table.kanban</field>
+        <field name="model">rsm.table</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <field name="name"/>
+                            <div>Capacity: <field name="capacity"/></div>
+                            <div>Status: <field name="status"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_restaurant_table" model="ir.actions.act_window">
+        <field name="name">Tables</field>
+        <field name="res_model">rsm.table</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="restaurant_menu_table" name="Tables" parent="restaurant_root_menu" action="action_restaurant_table"/>
+</odoo>

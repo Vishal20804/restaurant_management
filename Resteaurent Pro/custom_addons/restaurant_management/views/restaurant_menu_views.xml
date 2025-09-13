@@ -1,0 +1,52 @@
+<odoo>
+    <!-- Menu Tree/List View -->
+    <record id="view_restaurant_menu_tree" model="ir.ui.view">
+        <field name="name">rsm.menu.tree</field>
+        <field name="model">rsm.menu</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="category"/>
+                <field name="price"/>
+                <field name="is_available"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_restaurant_menu_form" model="ir.ui.view">
+        <field name="name">rsm.menu.form</field>
+        <field name="model">rsm.menu</field>
+        <field name="arch" type="xml">
+            <form string="Restaurant Menu">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="category"/>
+                            <field name="is_available"/>
+                        </group>
+                        <group>
+                            <field name="price"/>
+                            <field name="dish_image" widget="image" class="oe_avatar"
+                                   options="{'size': [256, 256]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" placeholder="Write details about this dish..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Action -->
+    <record id="action_restaurant_menu" model="ir.actions.act_window">
+        <field name="name">Menu</field>
+        <field name="res_model">rsm.menu</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="restaurant_root_menu" name="Restaurant" web_icon="restaurant_management,static/description/icon.png"/>
+    <menuitem id="restaurant_menu_menu" name="Menu" parent="restaurant_root_menu" action="action_restaurant_menu"/>
+</odoo>
