@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rsm_menu,access.rsm.menu,model_rsm_menu,base.group_user,1,1,1,1
+access_rsm_table,access.rsm.table,model_rsm_table,base.group_user,1,1,1,1
+access_rsm_order,access.rsm.order,model_rsm_order,base.group_user,1,1,1,1
+access_rsm_order_line,access.rsm.order.line,model_rsm_order_line,base.group_user,1,1,1,1
+access_rsm_reservation,access.rsm.reservation.user,model_rsm_reservation,base.group_user,1,1,1,1
+access_rsm_menu_public,access.rsm.menu.public,model_rsm_menu,base.group_public,1,0,0,0
