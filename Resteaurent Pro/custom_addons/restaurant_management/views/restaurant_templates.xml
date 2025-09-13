@@ -1,37 +1,84 @@
 <odoo>
-    <template id="restaurant_menu_page" name="Restaurant Menu">
+     <record id="food_menu" model="website.menu">
+        <field name="name">Fresh Food</field>
+        <field name="url">/restaurant/menu_list</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence" type="int">30</field>
+    </record>
+    <template id="restaurant_menu_list" name="Restaurant Menu List">
         <t t-call="website.layout">
             <div class="container mt-4">
-                <h2 class="text-center">Our Menu</h2>
-                <div class="row mt-4">
+            <h2 class="text-center">Food Dishes</h2>
+            <table class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>Dish Name</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
                     <t t-foreach="menus" t-as="dish">
-                        <div class="col-md-4 mb-4">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-                                    <h5 class="card-title"><t t-esc="dish.name"/></h5>
-                                    <p class="card-text">Category: <t t-esc="dish.category"/></p>
-                                    <p class="card-text">Price: ₹<t t-esc="dish.price"/></p>
-                                    <a t-att-href="'/restaurant/order/%s' % dish.id" class="btn btn-primary">
-                                        Order Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        <tr>
+                            <td><t t-esc="dish.name"/></td>
+                            <td>₹<t t-esc="dish.price"/></td>
+                            <td>
+                                <a t-att-href="'/restaurant/dish/%s' % dish.id" 
+                                   class="btn btn-sm btn-primary">
+                                   View
+                                </a>
+                            </td>
+                        </tr>
                     </t>
+                </tbody>
+            </table>
+            </div>
+        </t>
+    </template>
+    <template id="restaurant_dish_detail" name="Dish Detail">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <div class="row">
+                    <!-- Left Side: Image -->
+                    <div class="col-md-6 text-center">
+                        <t t-if="dish.dish_image">
+                            <img t-att-src="'/web/image/rsm.menu/%s/dish_image' % dish.id"
+                                class="img-fluid rounded shadow-sm"
+                                style="max-height:350px; object-fit:contain;"/>
+                        </t>
+                        <t t-else="">
+                            <img src="/restaurant_management/static/src/img/default_dish.jpg"
+                                class="img-fluid rounded shadow-sm"
+                                style="max-height:350px; object-fit:contain;"/>
+                        </t>
+                    </div>
+                    <div class="col-md-6">
+                        <h2><t t-esc="dish.name"/></h2>
+                        <p>Category: <t t-esc="dish.category"/></p>
+                        <p>Price: ₹<t t-esc="dish.price"/></p>
+
+                        <form action="/restaurant/place_order" method="post">
+                            <input type="hidden" name="dish_id" t-att-value="dish.id"/>
+                            <div class="mb-3">
+                                <label>Quantity</label>
+                                <input type="number" name="quantity" class="form-control" value="1" min="1"/>
+                            </div>
+                            <button type="submit" class="btn btn-success">Place Order</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </t>
     </template>
-    <template id="restaurant_order_confirm" name="Order Confirmation">
+    <template id="restaurant_order_done" name="Order Done Page">
         <t t-call="website.layout">
-            <div class="container mt-4 text-center">
-                <h2>Thank you!</h2>
-                <p>You ordered <strong><t t-esc="dish.name"/></strong> for ₹<t t-esc="dish.price"/>.</p>
-                <p>Your order ID: <t t-esc="order.id"/></p>
-                <a href="/restaurant/menu" class="btn btn-success">Back to Menu</a>
+            <div class="container mt-5 text-center">
+                <h2>✅ Your Order Has Been Placed!</h2>
+                <p>Order ID: <strong><t t-esc="order.id"/></strong></p>
+                <p>Total Amount: ₹<t t-esc="order.total_amount"/></p>
+                <a href="/restaurant/menu_list" class="btn btn-primary mt-3">Back to Menu</a>
             </div>
         </t>
     </template>
+
 </odoo>
-<!-- <odoo>
-</odoo> -->
