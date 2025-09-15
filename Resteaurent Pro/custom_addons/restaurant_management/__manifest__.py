@@ -20,6 +20,11 @@
         'views/reservation_views.xml',
         'views/restaurant_templates.xml',
     ],
+    'assets': {
+    'web.assets_frontend': [
+        'restaurant_management/static/src/js/quantity.js',
+    ],
+},
     'demo': [],
     'installable': True,
     'application': True,
