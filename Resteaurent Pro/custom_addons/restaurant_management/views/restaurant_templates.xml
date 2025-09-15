@@ -60,6 +60,17 @@
 
                         <form action="/restaurant/place_order" method="post">
                             <input type="hidden" name="dish_id" t-att-value="dish.id"/>
+                            <div class="mb-3">
+                                <label for="table_id" class="form-label">Select Table</label>
+                                <select id="table_id" name="table_id" class="form-control" required="required">
+                                    <option value="">-- Select a Table --</option>
+                                    <t t-foreach="tables" t-as="tbl">
+                                        <option t-att-value="tbl.id">
+                                            <t t-esc="tbl.name"/> (Capacity: <t t-esc="tbl.capacity"/>)
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
                            <div class="input-group mb-3" style="width: 150px;">
                                 <button class="btn btn-outline-secondary" type="button" onclick="decreaseQty()">−</button>
                                 <input type="text" id="quantity" name="quantity" class="form-control text-center" value="1" readonly="readonly"/>
@@ -70,18 +81,6 @@
                     </div>
                 </div>
             </div>
-        <script>
-            function increaseQty() {
-                let qtyInput = document.getElementById("quantity");
-                qtyInput.value = parseInt(qtyInput.value) + 1;
-            }
-            function decreaseQty() {
-                let qtyInput = document.getElementById("quantity");
-                if (parseInt(qtyInput.value) > 1) {
-                    qtyInput.value = parseInt(qtyInput.value) - 1;
-                }
-            }
-        </script>
         </t>
     </template>
     <template id="restaurant_order_done" name="Order Done Page">
