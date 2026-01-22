@@ -1,6 +1,7 @@
 {
     'name':'Food Restaurant Management',
     'version':'18.0',
+
     'author':'Kisan Kumar',
     'category': 'Restaurant',
     'summary': 'Manage Food Menu, Tables, and Orders in a Restaurant',
