@@ -1,7 +1,7 @@
 {
     'name':'Food Restaurant Management',
     'version':'18.0',
-    'author':'Vishal kumar Sharmaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+    'author':'Vishal',
     'category': 'Restaurant',
     'summary': 'Manage Food Menu, Tables, and Orders in a Restaurant',
     'description': """
